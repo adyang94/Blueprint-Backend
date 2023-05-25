@@ -1,0 +1,23 @@
+
+{
+    "depression" :{
+        "score_threshold": 2,
+        "operator": ">=",
+        "level_2_assessment": "PHQ-9"
+    },
+    "mania": {
+        "score_threshold": 2,
+        "operator": ">=",
+        "level_2_assessment": "ASRM"
+    },
+    "anxiety":{
+        "score_threshold": 2,
+        "operator": ">=",
+        "level_2_assessment": "PHQ-9"
+    },
+    "substance_use": {
+        "score_threshold": 1,
+        "operator": ">=",
+        "level_2_assessment": "ASSIST"
+    }
+}
