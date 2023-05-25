@@ -18,9 +18,6 @@ exports.calculateTotalScore = function (req, res) {
         if (!domainScores[currDomain]) domainScores[currDomain] = 0;
     }
 
-    console.log('map: ', map, 'domainScores: ', domainScores);
-
-
     // loop through answers and use domainMap to calculate total score of each domain
     let answers = req.body.answers;
     
@@ -34,24 +31,14 @@ exports.calculateTotalScore = function (req, res) {
 
     }
 
-    console.log('domainscores: ', domainScores);
-
-
     // Using the total score of each domain, determine which level 2 assessments
-
-    console.log('resultcriteria: ', resultCriteria);
-
     let results = new Set();
-
-    console.log('DOMAIN SCORES: ', Object.entries(domainScores));
 
     Object.entries(domainScores).map((entry) => {
         let [domain, score] = entry;
-        console.log('1---', resultCriteria[domain]);
 
         if (resultCriteria[domain]) {
             let operator = resultCriteria[domain].operator;
-            console.log('1---', operator);
 
             switch (operator) {
                 case "=":
@@ -70,7 +57,6 @@ exports.calculateTotalScore = function (req, res) {
                     }
                     break;
                 case ">=":
-                    console.log('2---');
                     if(score >= resultCriteria[domain].score_threshold) {
                         results.add(resultCriteria[domain].level_2_assessment);
                     }
@@ -85,9 +71,6 @@ exports.calculateTotalScore = function (req, res) {
     });
 
     // return results
-
-    console.log(results);
-
     let response = Array.from(results)
 
     res.json({results: response});
